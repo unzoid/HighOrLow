@@ -3,6 +3,9 @@ import Link from "next/link";
 import { useState } from "react";
 import { siteConfig } from "@/config/site";
 import { Button } from "@/components/ui/button";
+import { HelpCircle } from 'lucide-react';
+import { Cog } from 'lucide-react';
+import { Check } from 'lucide-react';
 import {
     Card,
     CardContent,
@@ -14,6 +17,7 @@ import {
 import { Input } from "@/components/ui/input";
 import {
     Dialog,
+    DialogClose,
     DialogContent,
     DialogDescription,
     DialogFooter,
@@ -120,10 +124,10 @@ export default function IndexPage() {
                   style={{ WebkitAppearance: 'none', MozAppearance: 'textfield' }}
                 />
                 <Button className="w-full" onClick={handleGuess}>
-                  Guess
+                <HelpCircle className="mr-2 h-4 w-4" /> Guess
                 </Button>
                 <Button className="w-full mt-4" onClick={() => setShowSettings(true)}>
-                  Settings
+                <Cog className="mr-2 h-4 w-4" /> Settings
                 </Button>
               </div>
             </CardContent>
@@ -170,7 +174,11 @@ export default function IndexPage() {
                 </div>
               </div>
               <DialogFooter>
-                <Button onClick={handleSettingsSave}> Save changes </Button>
+              <DialogClose asChild>
+                <Button onClick={handleSettingsSave}> 
+                <Check className="mr-2 h-4 w-4" /> Save changes 
+                </Button>
+                </DialogClose>
               </DialogFooter>
             </DialogContent>
           </Dialog>
