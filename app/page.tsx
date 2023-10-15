@@ -23,6 +23,16 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { buttonVariants } from "@/components/ui/button";
+import 'app/globals.css'
+import { Inter } from "next/font/google";
+import 'styles/globals.css'
+
+
+const inter = Inter({
+    subsets: ["latin"],
+    variable: "--font-Inter",
+    weight: "400",
+})
 
 export default function IndexPage() {
     const [secretNumber, setSecretNumber] = useState(Math.floor(Math.random() * 100) + 1);
@@ -68,38 +78,36 @@ export default function IndexPage() {
                     Stars on GitHub are appreciated!
                 </p>
             </div>
-            <div className="flex justify-center items-center h-screen">
-                <div className="mt-0">
-                    <Card className="w-[400px] h-[350px] flex flex-col justify-between">
-                        <CardHeader className="text-center">
-                            <CardTitle>Guess the number</CardTitle>
-                            <CardDescription>Choose from {minNumber} till {maxNumber}!</CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                            <div className="flex flex-col justify-center items-center h-full">
-                                {feedback && (
-                                    <p className={`mb-4 ${feedback ? "fade-in" : ""}`}>
-                                        <strong>{feedback}</strong>
-                                    </p>
-                                )}
-                                <Input
-                                    type="number"
-                                    placeholder="Number"
-                                    className="w-full mb-4"
-                                    value={guess}
-                                    onChange={(e) => setGuess(e.target.value)}
-                                />
-                                <Button className="w-full" onClick={handleGuess}>
-                                    Guess
-                                </Button>
-                                <Button className="w-full mt-4" onClick={() => setShowSettings(true)}>
-                                    Settings
-                                </Button>
-                            </div>
-                        </CardContent>
-                    </Card>
-                </div>
-            </div>
+            <div className="flex items-center justify-center min-h-screen">
+      <Card className="w-[400px] h-[350px] flex flex-col justify-between mt-[-200px]">
+        <CardHeader className="text-center">
+          <CardTitle>Guess the number</CardTitle>
+          <CardDescription>Choose from {minNumber} till {maxNumber}!</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="flex flex-col justify-center items-center h-full">
+            {feedback && (
+              <p className={`mb-4 ${feedback ? "fade-in" : ""}`}>
+                <strong>{feedback}</strong>
+              </p>
+            )}
+            <Input
+              type="number"
+              placeholder="Number"
+              className="w-full mb-4"
+              value={guess}
+              onChange={(e) => setGuess(e.target.value)}
+            />
+            <Button className="w-full" onClick={handleGuess}>
+              Guess
+            </Button>
+            <Button className="w-full mt-4" onClick={() => setShowSettings(true)}>
+              Settings
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
             {showSettings && (
                 <Dialog open={showSettings}>
                     <DialogTrigger asChild>
@@ -162,10 +170,15 @@ export default function IndexPage() {
           animation: fade-in 0.5s ease-in;
         }
 
-        body {
-          font-family: 'Inter', sans-serif;
-        }
-      `}</style>
+        body, html {
+            height: 100%;
+            overflow: hidden;
+          }
+
+
+      `}
+      
+      </style>
         </section>
     );
 }

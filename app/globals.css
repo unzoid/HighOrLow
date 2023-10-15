@@ -1,6 +1,12 @@
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  font-family: 'Inter', sans-serif;
+}
  
 @layer base {
   :root {
@@ -65,6 +71,7 @@
     --ring: 240 4.9% 83.9%;
   }
 }
+
  
 @layer base {
   * {
