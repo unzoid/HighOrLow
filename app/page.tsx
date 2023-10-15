@@ -81,6 +81,7 @@ export default function IndexPage() {
         setGuess("");
     };
     
+    
     const handleSettingsSave = () => {
       setMinNumber(Math.max(1, minNumber)); // ensure the minimum is at least 1
       setMaxNumber(Math.max(minNumber, maxNumber)); // ensure the maximum is at least as large as the minimum
@@ -121,6 +122,11 @@ export default function IndexPage() {
                   className="w-full mb-4"
                   value={guess}
                   onChange={(e) => setGuess(e.target.value)}
+                  onKeyPress={(e) => {
+                    if(e.key === 'Enter') {
+                        handleGuess();
+                    }
+                }}
                   style={{ WebkitAppearance: 'none', MozAppearance: 'textfield' }}
                 />
                 <Button className="w-full" onClick={handleGuess}>
@@ -197,7 +203,8 @@ export default function IndexPage() {
 
               </AlertDialogHeader>
               <AlertDialogFooter>
-                <AlertDialogAction onClick={closeAlertDialog}>Play Again</AlertDialogAction>
+                <AlertDialogAction                  
+                onClick={closeAlertDialog}>Play Again</AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>
