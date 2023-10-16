@@ -56,7 +56,6 @@ export default function IndexPage() {
     const [feedback, setFeedback] = useState("");
     const [tries, setTries] = useState(0);
     const [numTries, setNumTries] = useState(0); // Initialize numTries state
-    const [showSettings, setShowSettings] = useState(false);
     const [minNumber, setMinNumber] = useState(1);
     const [maxNumber, setMaxNumber] = useState(100);
     const [showAlertDialog, setShowAlertDialog] = useState(false);
@@ -86,7 +85,6 @@ export default function IndexPage() {
       setMinNumber(Math.max(1, minNumber)); // ensure the minimum is at least 1
       setMaxNumber(Math.max(minNumber, maxNumber)); // ensure the maximum is at least as large as the minimum
       setSecretNumber(Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber); // generate a new secret number within the new range
-      setShowSettings(false);
     };
   
     const closeAlertDialog = () => {
@@ -132,17 +130,11 @@ export default function IndexPage() {
                 <Button className="w-full" onClick={handleGuess}>
                 <HelpCircle className="mr-2 h-4 w-4" /> Guess
                 </Button>
-                <Button className="w-full mt-4" onClick={() => setShowSettings(true)}>
+                <Dialog>
+            <DialogTrigger asChild>
+            <Button className="w-full mt-4">
                 <Cog className="mr-2 h-4 w-4" /> Settings
                 </Button>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-        {showSettings && (
-          <Dialog open={showSettings}>
-            <DialogTrigger asChild>
-              <Button variant="outline"></Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
               <DialogHeader>
@@ -188,7 +180,10 @@ export default function IndexPage() {
               </DialogFooter>
             </DialogContent>
           </Dialog>
-        )}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
         {showAlertDialog && (
           <AlertDialog open={showAlertDialog}>
             <AlertDialogTrigger asChild>
