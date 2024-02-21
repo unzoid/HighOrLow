@@ -65,7 +65,7 @@ export function SiteHeader() {
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Theme</SelectLabel>
-          <SelectItem value="Sapphire">Sapphire</SelectItem>
+          <SelectItem value="Sapphire" onClick={() => setTheme('light')}>Sapphire</SelectItem>
           <SelectItem value="Ruby">Ruby</SelectItem>
           <SelectItem value="Virus Green">Virus Green</SelectItem>
           <SelectItem value="Zinc">Zinc</SelectItem>
